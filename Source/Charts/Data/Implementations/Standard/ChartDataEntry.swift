@@ -120,7 +120,11 @@ public func ==(lhs: ChartDataEntry, rhs: ChartDataEntry) -> Bool
         return false
     }
     
-    if lhs.data !== rhs.data && !lhs.data!.isEqual(rhs.data)
+    guard let lhsData = lhs.data, let rhsData = rhs.data else {
+        return false
+    }
+    
+    if (lhsData !== rhsData) && !lhsData.isEqual(rhsData)
     {
         return false
     }
